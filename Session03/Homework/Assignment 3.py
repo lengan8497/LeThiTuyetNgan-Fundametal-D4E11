@@ -78,18 +78,39 @@
 
 
 #Jumble game
+#3a
+# from random import shuffle
+# from getpass import getpass
+
+# quiz = getpass('Enter your quiz: ').lower()
+
+# list_quiz = list(quiz)
+# shuffle(list_quiz)
+# for i in range(len(list_quiz)):
+#     print(list_quiz[i].lower(), end=' ')
+# print('\n',end = '')
+# ans = input('Your answer: ')
+# if ans == quiz:
+#     print('Hura')
+# else:
+#     print(':(')
+
+#3b
+from random import choice
 from random import shuffle
 from getpass import getpass
 
-quiz = getpass('Enter your quiz: ').lower()
-
-list_quiz = list(quiz)
-shuffle(list_quiz)
-for i in range(len(list_quiz)):
-    print(list_quiz[i].lower(), end=' ')
-print('\n',end = '')
-ans = input('Your answer: ')
-if ans == quiz:
-    print('Hura')
-else:
-    print(':(')
+word_list = ['meticulous','champion','hexagon']
+getpass('Your quiz: ').lower()
+for i in word_list:
+    quiz = choice(word_list)
+    list_quiz = list(quiz)
+    shuffle(list_quiz)
+    for j in range(len(list_quiz)):
+        print(list_quiz[j].lower(), end=' ')
+    print('\n',end = '')
+    ans = input('Your answer: ')
+    if ans == quiz:
+        print('Hura')
+    else:
+        print(':(')

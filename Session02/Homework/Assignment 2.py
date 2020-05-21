@@ -134,13 +134,13 @@
 
 
 # ii.
-# n = int(input('Enter a number: '))
-# column = n
-# row = n
-# for i in range(column):
-#     for j in range(row):
-#         if (i % 2) == (j % 2):
-#             print(1, end = ' ')
-#         else: 
-#             print(0, end = ' ')
-#     print()
+n = int(input('Enter a number: '))
+column = n
+row = n
+for i in range(column):
+    for j in range(row):
+        if (i % 2) == (j % 2):
+            print(1, end = ' ')
+        else: 
+            print(0, end = ' ')
+    print()

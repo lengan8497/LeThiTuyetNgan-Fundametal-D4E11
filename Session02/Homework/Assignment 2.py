@@ -42,7 +42,6 @@
 
 #2
 # from turtle import *
-# color('red')
 # for edge in range (3, 7):
 #     for i in range (edge):
 #         forward(100)

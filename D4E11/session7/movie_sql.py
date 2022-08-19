@@ -78,7 +78,15 @@ query = [
     }
   }
 ]
+# for actor in movie_collection.aggregate(query):
+#     print(actor)
+
+
 for actor in movie_collection.aggregate(query):
-    print(actor)
+    print(actor['_id'])
+    cursor.execute(f'''
+    INSERT INTO movie.actor(name)
+    VALUES('{actor['_id']}')
+    ''')
 
 mysql_client.commit()

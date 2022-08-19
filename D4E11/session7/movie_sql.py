@@ -44,23 +44,41 @@ cursor.execute('''
 ''')
 
 
-## Upload du lieu tu MongoDB sang MySQL ##
-query = {
-    'title': {'$ne': None},
-    'writer': {'$ne': None},
-    'year': {'$ne': None},
-    'actors': {'$ne': None}
-}
-for movie in movie_collection.find(query):   # EXTRACT
-    # TRANSFORM
-    movie_id = str(movie['_id'])
-    movie_title = movie['title']
-    movie_writer = movie['writer']
-    movie_year = movie['year']
-    # LOAD
-    cursor.execute(f'''
-        INSERT INTO movie.movie(id, title, writer, year)
-        VALUES ('{movie_id}', '{movie_title}', '{movie_writer}', '{movie_year}')
-    ''')
+# ## Upload du lieu tu MongoDB sang MySQL ##
+# query = {
+#     'title': {'$ne': None},
+#     'writer': {'$ne': None},
+#     'year': {'$ne': None},
+#     'actors': {'$ne': None}
+# }
+# for movie in movie_collection.find(query):   # EXTRACT
+#     # TRANSFORM
+#     movie_id = str(movie['_id'])
+#     movie_title = movie['title']
+#     movie_writer = movie['writer']
+#     movie_year = movie['year']
+#     # LOAD
+#     cursor.execute(f'''
+#         INSERT INTO movie.movie(id, title, writer, year)
+#         VALUES ('{movie_id}', '{movie_title}', '{movie_writer}', '{movie_year}')
+#     ''')
+
+query = [
+  {
+    '$match': {
+        'actors': {'$ne': None}
+        }
+  },
+  {
+    '$unwind': '$actors'
+  },
+  {
+    '$group': {
+        '_id': '$actors',
+    }
+  }
+]
+for actor in movie_collection.aggregate(query):
+    print(actor)
 
 mysql_client.commit()
